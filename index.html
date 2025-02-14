@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С Днём Святого Валентина!</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffdde1;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .heart {
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            position: absolute;
+            transform: rotate(-45deg);
+            animation: float 4s infinite ease-in-out;
+        }
+        .heart::before,
+        .heart::after {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+            position: absolute;
+        }
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+        .heart::after {
+            top: 0;
+            left: 10px;
+        }
+        .kiss {
+            position: absolute;
+            font-size: 24px;
+            animation: float 4s infinite ease-in-out;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(-45deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(-45deg); opacity: 0; }
+        }
+        .message {
+            font-size: 24px;
+            color: #b00000;
+            font-weight: bold;
+            display: none;
+            margin-top: 20px;
+        }
+        .letter-img {
+            width: 150px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #b00000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .button:hover {
+            background-color: #900000;
+        }
+    </style>
+</head>
+<body>
+    <img src="pink.png"  class="letter-img" onclick="showMessage()">
+    <button class="button" onclick="showMessage()">Нажми</button>
+    <div class="message">Ти мой самый лучший котик на свете! Люблю тебя очень сильно 💕
+        <img src="котики.avif" class="letter-img" onclick="showMessage()"> </div>
+    </div>
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 4000);
+        }
+
+        function createKiss() {
+            const kiss = document.createElement('div');
+            kiss.classList.add('kiss');
+            kiss.innerText = '💋';
+            kiss.style.left = Math.random() * 100 + 'vw';
+            kiss.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.body.appendChild(kiss);
+            setTimeout(() => kiss.remove(), 4000);
+        }
+
+        function showMessage() {
+            document.querySelector('.message').style.display = 'block';
+        }
+
+        setInterval(createHeart, 300);
+        setInterval(createKiss, 600);
+    </script>
+</body>
+</html>
